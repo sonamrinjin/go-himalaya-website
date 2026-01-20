@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Trek } from "@/data/treks";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 interface BookingFormProps {
   trek: Trek;
@@ -25,7 +26,9 @@ const BookingForm = ({ trek, onClose }: BookingFormProps) => {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -38,16 +41,36 @@ const BookingForm = ({ trek, onClose }: BookingFormProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await emailjs.send(
+        "service_uk1mh1x",       // Your Service ID
+        "template_vdsqh5c",      // Your Template ID
+        {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          nationality: formData.nationality,
+          travelers: formData.travelers,
+          startDate: formData.startDate,
+          message: formData.message,
+          trekName: trek.name,
+        },
+        "ZSMKx2W_HIti91lsK"      // Your Public Key
+      );
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    toast({
-      title: "Booking Request Submitted!",
-      description: "We'll contact you within 24 hours to confirm your booking.",
-    });
+      setIsSuccess(true);
+      toast({
+        title: "Booking Request Submitted!",
+        description: "We'll contact you within 24 hours to confirm your booking.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSuccess) {
