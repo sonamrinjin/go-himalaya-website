@@ -3,13 +3,22 @@ import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, MessageCircle, CheckCircle } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageCircle,
+  CheckCircle,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const ContactPage = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +27,9 @@ const ContactPage = () => {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -26,16 +37,37 @@ const ContactPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+
+    try {
+      await emailjs.send(
+        "service_uk1mh1x", // Service ID
+        "template_bwfb6i5", // Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "ZSMKx2W_HIti91lsK" // Public Key
+      );
+
+      setIsSuccess(true);
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast({
+        title: "Error",
+        description: "Message could not be sent. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -51,7 +83,7 @@ const ContactPage = () => {
               Contact Us
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Have questions about our treks? Want to customize an adventure? 
+              Have questions about our treks? Want to customize an adventure?
               We're here to help you plan the perfect Himalayan experience.
             </p>
           </div>
@@ -68,70 +100,69 @@ const ContactPage = () => {
                 <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
                   Contact Information
                 </h2>
+
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Office Address</h4>
+                      <h4 className="font-semibold">Office Address</h4>
                       <p className="text-muted-foreground">
-                        Thamel, Kathmandu<br />
-                        Nepal 44600
+                        Thamel, Kathmandu<br />Nepal 44600
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                      <a href="tel:+9771234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                        +977 123 456 7890
-                      </a>
-                    </div>
+                    <a
+                      href="tel:+9779869151197"
+                      className="text-muted-foreground hover:text-primary"
+                    >
+                      +977 9869151197
+                    </a>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                      <a href="mailto:info@gohimalaya.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        info@gohimalaya.com
-                      </a>
-                    </div>
+                    <a
+                      href="mailto:gohimalaya571@gmail.com"
+                      className="text-muted-foreground hover:text-primary"
+                    >
+                      gohimalaya571@gmail.com
+                    </a>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Clock className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Office Hours</h4>
-                      <p className="text-muted-foreground">
-                        Sun - Fri: 9:00 AM - 6:00 PM<br />
-                        Saturday: 10:00 AM - 4:00 PM
-                      </p>
-                    </div>
+                    <p className="text-muted-foreground">
+                      Sun - Fri: 9:00 AM - 6:00 PM<br />
+                      Saturday: 10:00 AM - 4:00 PM
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* WhatsApp Button */}
+              {/* WhatsApp */}
               <a
-                href="https://wa.me/9771234567890"
+                href="https://wa.me/9779869151197"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-green-500 text-white px-6 py-4 rounded-xl hover:bg-green-600 transition-colors"
+                className="flex items-center gap-3 bg-green-500 text-white px-6 py-4 rounded-xl hover:bg-green-600"
               >
                 <MessageCircle className="h-6 w-6" />
                 <div>
                   <p className="font-semibold">Chat on WhatsApp</p>
-                  <p className="text-sm text-white/80">Quick response guaranteed</p>
+                  <p className="text-sm text-white/80">
+                    Quick response guaranteed
+                  </p>
                 </div>
               </a>
             </div>
@@ -139,11 +170,11 @@ const ContactPage = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               {isSuccess ? (
-                <div className="bg-card rounded-2xl p-8 shadow-card text-center">
+                <div className="bg-card rounded-2xl p-8 text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle className="h-8 w-8 text-green-600" />
                   </div>
-                  <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
+                  <h3 className="font-serif text-2xl font-bold mb-2">
                     Message Sent Successfully!
                   </h3>
                   <p className="text-muted-foreground mb-6">
@@ -154,82 +185,62 @@ const ContactPage = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="bg-card rounded-2xl p-8 shadow-card">
-                  <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
+                <div className="bg-card rounded-2xl p-8">
+                  <h2 className="font-serif text-2xl font-bold mb-6">
                     Send Us a Message
                   </h2>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">
-                          Your Name *
-                        </label>
-                        <Input
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="John Smith"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">
-                          Email Address *
-                        </label>
-                        <Input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="john@example.com"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">
-                          Phone Number
-                        </label>
-                        <Input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="+1 234 567 8900"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">
-                          Subject *
-                        </label>
-                        <Input
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          placeholder="Trek Inquiry"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">
-                        Your Message *
-                      </label>
-                      <Textarea
-                        name="message"
-                        value={formData.message}
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <Input
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
                         onChange={handleChange}
-                        placeholder="Tell us about your dream trek, preferred dates, group size, or any questions..."
-                        rows={6}
+                        required
+                      />
+                      <Input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                       />
                     </div>
 
-                    <Button type="submit" variant="cta" size="lg" className="w-full" disabled={isSubmitting}>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <Input
+                        name="phone"
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                      <Input
+                        name="subject"
+                        placeholder="Subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+
+                    <Textarea
+                      name="message"
+                      placeholder="Your message..."
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+
+                    <Button
+                      type="submit"
+                      variant="cta"
+                      size="lg"
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
@@ -238,20 +249,6 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Map */}
-      <section className="h-[400px] bg-muted">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.2577451725!2d85.30847431506159!3d27.715138982789485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fd7e5e52b3%3A0x4c2a2f47eb4e7e6a!2sThamel%2C%20Kathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Go Himalaya Office Location"
-        />
       </section>
     </Layout>
   );
