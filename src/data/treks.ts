@@ -4,6 +4,10 @@ import trekLangtang from "@/assets/trek-langtang.jpg";
 import peakClimbing from "@/assets/mera-peak.jpg";
 import trekManaslu from "@/assets/trek-manaslu.jpg";
 import islandPeak from "@/assets/island-peak.jpg";
+import uppermustang from "@/assets/uppermustang.jpg";
+import ghorepanipoonhill from "@/assets/ghorepanipoonhill.jpg";
+import yalaPeak from "@/assets/yala-peak.jpg";
+import mardiHimal from "@/assets/mardi-himal-trek.jpg";
 
 export type TrekCategory = "popular" | "remote" | "peak-climbing";
 export type Difficulty = "Easy" | "Moderate" | "Challenging" | "Strenuous" | "Extreme";
@@ -370,7 +374,7 @@ export const treks: Trek[] = [
     price: 1850,
     shortDescription: "Explore the forbidden kingdom of Lo in the rain shadow of the Himalayas.",
     description: "Upper Mustang, the last forbidden kingdom of Nepal, offers a unique trek into a preserved Tibetan Buddhist world. The dramatic desert-like landscape and ancient cave monasteries make this a truly special journey.",
-    image: trekLangtang,
+    image: uppermustang,
     highlights: [
       "Explore ancient Lo Manthang",
       "Desert mountain landscapes",
@@ -494,7 +498,7 @@ export const treks: Trek[] = [
     price: 450,
     shortDescription: "Perfect short trek with stunning sunrise views over the Annapurna and Dhaulagiri ranges.",
     description: "The Ghorepani Poon Hill trek is the perfect short Himalayan adventure. Famous for its spectacular sunrise views over Annapurna, Dhaulagiri, and Machhapuchhre, this trek offers big mountain experiences in a short timeframe.",
-    image: trekAnnapurna,
+    image: ghorepanipoonhill,
     highlights: [
       "Sunrise from Poon Hill (3,210m)",
       "Views of Annapurna and Dhaulagiri",
@@ -530,7 +534,154 @@ export const treks: Trek[] = [
       "Sun protection",
       "Camera"
     ]
-  }
+  },
+  {
+  id: "9",
+  name: "Yala Peak Climbing",
+  slug: "yala-peak-climbing",
+  category: "peak-climbing",
+  region: "Langtang",
+  duration: 11,
+  maxAltitude: 5500,
+  difficulty: "Strenuous",
+  price: 1200,
+  shortDescription:
+    "An ideal introductory Himalayan climbing adventure in the Langtang region, perfect for beginners.",
+  description:
+    "Yala Peak Climbing is a fantastic introduction to mountaineering in Nepal. Located in the Langtang region, this 5,500-meter peak offers breathtaking views of Langtang Lirung, Dorje Lakpa, Ganesh Himal, and even Shishapangma in Tibet. The climb is non-technical but physically demanding, making it perfect for first-time climbers with good fitness.",
+  image: yalaPeak,
+  highlights: [
+    "Summit Yala Peak (5,500m)",
+    "Views of Langtang Lirung, Dorje Lakpa & Shishapangma",
+    "Perfect first Himalayan climbing experience",
+    "Explore Langtang Valley & Tamang culture",
+    "Experienced climbing guides and safety support"
+  ],
+  itinerary: [
+    { day: 1, title: "Syabrubesi to Lama Hotel", description: "Trek through forested trails", altitude: 2460 },
+    { day: 2, title: "Lama Hotel to Langtang Village", description: "Scenic valley trek", altitude: 3450 },
+    { day: 3, title: "Langtang Village to Kyanjin Gompa", description: "Enter alpine zone", altitude: 3870 },
+    { day: 4, title: "Acclimatization Day", description: "Hike to Tsergo Ri", altitude: 4984 },
+    { day: 5, title: "Kyanjin Gompa to Yala Base Camp", description: "Approach base camp", altitude: 4600 },
+    { day: 6, title: "Summit Yala Peak & Return", description: "Summit day and descent", altitude: 5500 },
+    { day: 7, title: "Kyanjin Gompa to Lama Hotel", description: "Descend through valley", altitude: 2460 },
+    { day: 8, title: "Lama Hotel to Khanjim", description: "Forest trek", altitude: 2235 },
+    { day: 9, title: "Khanjim to Syabrubesi", description: "Final trekking day", altitude: 1460 },
+    { day: 10, title: "Drive to Kathmandu", description: "Return to capital", altitude: 1400 },
+    { day: 11, title: "Departure", description: "Airport transfer", altitude: 1400 }
+  ],
+  includes: [
+    "Licensed trekking & climbing guide",
+    "Porter service",
+    "Langtang permits",
+    "Meals during trek and climb",
+    "Camping equipment at base camp",
+    "Climbing gear (ropes, crampons, ice axe)",
+    "Guide & porter insurance"
+  ],
+  excludes: [
+    "International flights",
+    "Nepal visa fees",
+    "Personal climbing gear",
+    "Travel insurance with rescue",
+    "Tips and personal expenses"
+  ],
+  bestSeason: ["April", "May", "October", "November"],
+  groupSize: "1–7 people",
+  packingList: [
+    "Mountaineering boots",
+    "Crampons & ice axe",
+    "Down jacket",
+    "Sleeping bag (-10°C)",
+    "Helmet & harness",
+    "Trekking poles"
+  ]
+},
+{
+  id: "10",
+  name: "Mardi Himal Base Camp Trek",
+  slug: "mardi-himal-base-camp-trek",
+  category: "popular",
+  region: "Annapurna",
+  duration: 4,
+  maxAltitude: 4250,
+  difficulty: "Moderate",
+  price: 450,
+  shortDescription:
+    "A short and less-crowded trek in the Annapurna region offering stunning views of Mardi Himal, Machhapuchhre, Annapurna, and Dhaulagiri.",
+  description:
+    "The Mardi Himal Trek is a less touristic trek in the Annapurna region that takes you to the base camp of Mardi Himal near Machhapuchhre. This 4-day trek passes through Gurung villages, lush rhododendron forests, suspension bridges, and scenic ridgelines. The trek starts from Pokhara with a drive to Kande and continues through Forest Camp, Low Camp, and High Camp before reaching Mardi Himal Base Camp.",
+  image: mardiHimal,
+  highlights: [
+    "Close-up views of Mardi Himal, Machhapuchhre, Annapurna & Dhaulagiri",
+    "Off-the-beaten-path Annapurna trekking route",
+    "Walk through rhododendron and magnolia forests",
+    "Traditional Gurung villages and local culture",
+    "Spectacular Himalayan viewpoints"
+  ],
+  itinerary: [
+    {
+      day: 1,
+      title: "Pokhara – Kande – Forest Camp",
+      description:
+        "Drive from Pokhara to Kande and trek via Australian Camp, Pothana, and Deurali to Forest Camp.",
+      altitude: 2600
+    },
+    {
+      day: 2,
+      title: "Forest Camp – Low Camp – Badal Danda – High Camp",
+      description:
+        "Trek through forested trails and ridgelines to reach High Camp with mountain views.",
+      altitude: 3600
+    },
+    {
+      day: 3,
+      title: "High Camp – Mardi Himal Base Camp – Badal Danda",
+      description:
+        "Early hike to viewpoint and Mardi Himal Base Camp, then descend to Badal Danda.",
+      altitude: 4250
+    },
+    {
+      day: 4,
+      title: "Badal Danda – Sidhing – Pokhara",
+      description:
+        "Descend to Sidhing village and drive back to Pokhara.",
+      altitude: 1700
+    }
+  ],
+  includes: [
+    "Tea house accommodation during trek",
+    "Breakfast, lunch, and dinner during trek",
+    "Transportation: Pokhara–Kande & Sidhing–Pokhara",
+    "Licensed trekking guide with insurance",
+    "First aid kit",
+    "Annapurna Conservation Area Permit (ACAP)",
+    "TIMS card",
+    "All necessary government taxes and fees"
+  ],
+  excludes: [
+    "International airfare",
+    "Nepal visa fee",
+    "Travel insurance",
+    "Personal expenses (drinks, Wi-Fi, hot shower, charging)",
+    "Porter service (optional)",
+    "Tips for guide and porter"
+  ],
+  bestSeason: ["March", "April", "May", "September", "October", "November"],
+  groupSize: "2–12 people",
+  packingList: [
+    "Warm jacket",
+    "Trekking boots",
+    "Rain jacket",
+    "Trekking poles",
+    "Sleeping bag",
+    "Sun protection",
+    "Reusable water bottles",
+    "Personal first aid kit"
+  ]
+},
+
+
 ];
 
 export const getTrekBySlug = (slug: string): Trek | undefined => {
@@ -557,3 +708,4 @@ export const filterTreks = (filters: {
     return true;
   });
 };
+

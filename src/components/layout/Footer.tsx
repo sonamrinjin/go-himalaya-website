@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mountain, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
+import logo from "@/assets/logo.png";
+
 
 const Footer = () => {
   return (
@@ -9,18 +11,22 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-primary">
-                <Mountain className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-xl font-bold text-background">
-                  Go Himalaya
-                </span>
-                <span className="text-xs tracking-wider uppercase text-background/60">
-                  Treks & Expedition
-                </span>
-              </div>
-            </Link>
+  <img
+    src={logo}
+    alt="Go Himalaya Logo"
+    className="h-16 w-auto object-contain"
+  />
+
+  <div className="flex flex-col">
+    <span className="font-serif text-xl font-bold text-background">
+      Go Himalaya
+    </span>
+    <span className="text-xs tracking-wider uppercase text-background/60">
+      Treks & Expedition
+    </span>
+  </div>
+</Link>
+
             <p className="text-sm text-background/70 leading-relaxed">
               Experience authentic Himalayan adventures with local experts. 
               We've been guiding trekkers through Nepal's majestic mountains since 2005.

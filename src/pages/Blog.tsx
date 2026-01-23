@@ -1,13 +1,16 @@
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight, User } from "lucide-react";
+import featuredImage from "../assets/featured.jpg";
+import DolpoImage from "../assets/dolpo.jpg";
 
 const blogPosts = [
   {
     id: 1,
     title: "Best Time to Trek in Nepal: A Complete Season Guide",
-    excerpt: "Discover the optimal months for Himalayan trekking, from the crystal-clear autumn skies to the blooming rhododendrons of spring.",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+    excerpt:
+      "Discover the optimal months for Himalayan trekking, from the crystal-clear autumn skies to the blooming rhododendrons of spring.",
+    image: featuredImage, // ✅ LOCAL IMAGE FROM PUBLIC
     author: "Pemba Sherpa",
     date: "December 15, 2024",
     readTime: "8 min read",
@@ -16,7 +19,8 @@ const blogPosts = [
   {
     id: 2,
     title: "Altitude Sickness: Prevention, Symptoms & Treatment",
-    excerpt: "Essential knowledge for every trekker. Learn how to recognize, prevent, and manage altitude sickness in the Himalayas.",
+    excerpt:
+      "Essential knowledge for every trekker. Learn how to recognize, prevent, and manage altitude sickness in the Himalayas.",
     image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800",
     author: "Dr. Mingma Dorje",
     date: "December 10, 2024",
@@ -26,8 +30,9 @@ const blogPosts = [
   {
     id: 3,
     title: "Complete Packing List for Everest Base Camp Trek",
-    excerpt: "Don't forget a thing! Our comprehensive packing guide covers everything from base layers to altitude essentials.",
-    image: "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800",
+    excerpt:
+      "Don't forget a thing! Our comprehensive packing guide covers everything from base layers to altitude essentials.",
+    image: DolpoImage,
     author: "Tashi Lama",
     date: "December 5, 2024",
     readTime: "12 min read",
@@ -36,7 +41,8 @@ const blogPosts = [
   {
     id: 4,
     title: "Understanding Sherpa Culture: Traditions of the High Himalayas",
-    excerpt: "Explore the rich cultural heritage of the Sherpa people, from Buddhist traditions to the warmth of mountain hospitality.",
+    excerpt:
+      "Explore the rich cultural heritage of the Sherpa people, from Buddhist traditions to the warmth of mountain hospitality.",
     image: "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=800",
     author: "Dawa Yangzum",
     date: "November 28, 2024",
@@ -46,7 +52,8 @@ const blogPosts = [
   {
     id: 5,
     title: "Nepali Festivals: When Culture Meets Adventure",
-    excerpt: "Plan your trek around Nepal's vibrant festivals. Experience Dashain, Tihar, and local celebrations in the mountains.",
+    excerpt:
+      "Plan your trek around Nepal's vibrant festivals. Experience Dashain, Tihar, and local celebrations in the mountains.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
     author: "Karma Tenzing",
     date: "November 20, 2024",
@@ -56,7 +63,8 @@ const blogPosts = [
   {
     id: 6,
     title: "Training for High Altitude Trekking: A 12-Week Program",
-    excerpt: "Get physically ready for your Himalayan adventure with our structured training program designed for trekkers.",
+    excerpt:
+      "Get physically ready for your Himalayan adventure with our structured training program designed for trekkers.",
     image: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800",
     author: "Pasang Nuru",
     date: "November 15, 2024",
@@ -79,7 +87,7 @@ const BlogPage = () => {
               Blog & Travel Guide
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Expert tips, cultural insights, and practical guides to help you prepare 
+              Expert tips, cultural insights, and practical guides to help you prepare
               for your Himalayan adventure.
             </p>
           </div>
